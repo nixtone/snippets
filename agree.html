@@ -1,3 +1,28 @@
+<form action="">
+	<label for="agree1"><input type="checkbox" name="agree" id="agree1" checked> Я согласен <a href="/agree/">с политикой конфиденциальности и защиты информации</a></label>
+	<input value="Отправить" type="submit">
+</form>
+
+<style>
+input[type="submit"][disabled] {
+	cursor: default;
+	opacity: 0.5;
+}
+</style>
+
+<script src="lib/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+
+	// Отключение отправки формы в случае отказа от пользовательского соглашения
+	$("input[name='agree']").click(function(event) {
+		$(this).closest('form').find('input[type="submit"]').attr('disabled', ($(this).prop('checked') ? false : true));
+	});
+
+});
+</script>
+
+
 <ol>
 	<li>Персональные данные Пользователя/Покупателя обрабатывается в соответствии с 
 ФЗ «О персональных данных» № 152-ФЗ.</li>
@@ -33,36 +58,3 @@
 лицам, не имеющим непосредственного отношения к исполнению Заказов, в соответствии с п. 4 ст. 16 Федерального закона «Об информации, 
 информационных технологиях и о защите информации».</li>
 </ol>
-
-<script src="lib/jquery-3.5.1.min.js"></script>
-<script>
-$(document).ready(function() {
-
-	// Отключение отправки при отказе от соглашения
-	function agree(parent, btn) {
-		$("input[name='agree']").prop('checked',true).click(function(event){
-			if($(this).prop('checked') == false) {
-				$(this).closest(parent).find(btn).attr('disabled', true);
-			}
-			else {
-				$(this).closest(parent).find(btn).attr('disabled', false);
-			}
-		});
-	}
-	agree("form", "input[type='submit']");
-
-});
-</script>
-
-<style>
-input[type="submit"][disabled] {
-	cursor: default;
-	opacity: 0.5;
-}
-</style>
-
-<form action="" method="post">
-	<!-- <div class="agreement"><input name="agree" checked="" type="checkbox"> Я согласен <a href="/agree/">с политикой конфиденциальности и защиты информации</a></div> -->
-	<label for="agreement"><input type="checkbox" name="agree" id="agreement"> Я согласен <a href="/agree/">с политикой конфиденциальности и защиты информации</a></label>
-	<div><input value="Отправить" type="submit"></div>
-</form>

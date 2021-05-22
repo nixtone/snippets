@@ -1,0 +1,41 @@
+<!-- 
+https://yandex.ru/dev/maps/jsapi/doc/2.1/quick-start/index.html (Документация)
+https://snipp.ru/tools/address-coord (Получить координаты по адресу)
+https://snipp.ru/jquery/yamaps-balloon (Гайд)
+ -->
+
+<div class="ymap wide">
+	<div id="ymap" class="container"></div>
+</div>
+
+<style>
+.ymap {
+	height: 400px;
+}
+#ymap {
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+<script>
+// Яндекс карта
+ymaps.ready(ymapCreate);
+function ymapCreate() {
+	var ymapObj, placeMark = [];
+	ymapObj = new ymaps.Map("ymap", {
+		center: [55.76, 37.64],
+		behaviors: ['default', 'scrollZoom'],
+		zoom: 10,
+		controls: ["zoomControl"]
+	});
+	ymapObj.behaviors.disable('scrollZoom');
+	placeMark.push(new ymaps.Placemark([55.752577,37.63213]));
+	placeMark.push(new ymaps.Placemark([55.814229,37.407501]));
+	placeMark.push(new ymaps.Placemark([55.660562,37.545366]));
+	for (var key in placeMark) {
+		ymapObj.geoObjects.add(placeMark[key]);
+	}
+}
+</script> 
