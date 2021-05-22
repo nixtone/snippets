@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Grid</title>
+<link rel="stylesheet" href="custom.css">
+<script src="http://kasites.ru/cdn/jquery-3.4.1.min.js"></script>
+<script>
+$(document).ready(function() {
+
+	// Подгонка высоты элементов
+	function hefoal(target) {
+		var h = $(target).outerHeight(true);
+		$(target).each(function() {
+			if($(this).height() > h) h = $(this).outerHeight(true);
+		});
+		$(target).css('height', h);
+	}
+	hefoal("#float .item");
+	hefoal("#inline-block .item");
+
+});
+</script>
+<style>
+.blok {
+	border: 1px solid #000;
+}
+.minmargin {
+	margin: -5px;
+}
+.item {
+	background: #57a2e2;
+	padding: 5px;
+}
+
+/* --- */
+
+#flexbox .minmargin {
+	display: flex;
+	flex-wrap: wrap;
+}
+#flexbox .item {
+	box-sizing: border-box;
+	margin: 5px;
+	width: calc(25% - 10px);
+}
+
+/* --- */
+
+#grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+}
+
+/* --- */
+
+#float .minmargin:before, #float .minmargin:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+#float .item {
+	box-sizing: border-box;
+	float: left;
+	margin: 5px;
+	width: calc(25% - 10px);
+}
+
+/* --- */
+
+#inline-block .minmargin {
+	font-size: 0;
+}
+#inline-block .item {
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 5px;
+	width: calc(25% - 10px);
+	font-size: 1rem;
+	vertical-align: top;
+}
+</style>
+</head>
+<body>
+
+<div id="flexbox" class="blok">
+	<div class="minmargin">
+		<div class="item c1">flexbox<br>1</div>
+		<div class="item c2">2</div>
+		<div class="item c3">3</div>
+		<div class="item c4">4</div>
+		<div class="item c5">5</div>
+		<div class="item c6">6</div>
+	</div>
+</div>
+
+&nbsp;
+
+<div id="grid" class="blok">
+	<div class="item c1">grid<br>1</div>
+	<div class="item c2">2</div>
+	<div class="item c3">3</div>
+	<div class="item c4">4</div>
+	<div class="item c5">5</div>
+	<div class="item c6">6</div>
+</div>
+
+&nbsp;
+
+<div id="float" class="blok">
+	<div class="minmargin">
+		<div class="item c1">float<br>1</div>
+		<div class="item c2">2</div>
+		<div class="item c3">3</div>
+		<div class="item c4">4</div>
+		<div class="item c5">5</div>
+		<div class="item c6">6</div>
+	</div>
+</div>
+
+&nbsp;
+
+<div id="inline-block" class="blok">
+	<div class="minmargin">
+		<div class="item c1">inline-block<br>1</div>
+		<div class="item c2">2</div>
+		<div class="item c3">3</div>
+		<div class="item c4">4</div>
+		<div class="item c5">5</div>
+		<div class="item c6">6</div>
+	</div>
+</div>
+
+</body>
+</html>

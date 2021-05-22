@@ -1,0 +1,35 @@
+<script src="lib/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+
+	function preventTimer(form, second, event) {
+		event.preventDefault();
+		var timeCounter = second,
+			submit = form.find('input[type="submit"]').attr('disabled', true),
+			sendTimer = setInterval(function() {
+				if(timeCounter > 0) {
+					timeCounter--;
+					if(timeCounter == 0) {
+						submit.attr('disabled', false);
+						clearInterval(sendTimer);
+					}
+				}
+			}, 1000);
+	}
+	$("form").submit(function(event) {
+		preventTimer($(this), 3, event);
+		
+	});
+
+});
+</script>
+<style>
+input[type="submit"][disabled] {
+	opacity: 0.5;
+	cursor: default;
+}
+</style>
+
+<form action="">
+	<input type="submit" value="Send">
+</form>

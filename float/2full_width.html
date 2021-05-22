@@ -1,0 +1,38 @@
+<meta charset="utf8">
+<style type="text/css">
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+
+.container {
+    position: relative;
+    height: 40px;
+    background: #ddd;
+    border: 1px solid #999;
+    overflow: hidden;
+}
+
+.fixed {
+    float: left;
+    width: 200px;
+    height: 40px;
+    background: #eee;
+}
+
+.stretch {
+    margin-left: 210px;
+    height: 40px;
+    background: #aaa;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+</style>
+<div class="container clearfix">
+    <div class="fixed">Блок с известной шириной</div>
+    <div class="stretch">Блок, заполняющий оставшееся место</div>
+</div>

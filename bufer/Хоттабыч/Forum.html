@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {
+	background: #0a0a0a;
+	color: #42abaf;
+	margin: 0;
+	font: 0.8em Verdana;
+}
+.forum {
+	max-width: 920px;
+	margin: 50px auto;
+}
+.mess {
+	position: relative;
+	padding-left: 40px;
+	padding-top: 30px;
+}
+.mess.s1 {
+	padding-left: 10px;
+}
+.mess.s3 {
+	margin-left: 29px;
+}
+.mess.s1::before {
+	display: none;
+}
+.mess::before {
+	content: '';
+	display: block;
+	width: 30px;
+	height: 1px;
+	background: #6f3c21;
+	position: absolute;
+	top: 39px;
+	left: 0;
+}
+.mess:not(.s1)::after {
+	content: '';
+	display: block;
+	width: 1px;
+	height: 100%;
+	background: #6f3c21;
+	position: absolute;
+	top: -6px;
+	left: 0;
+}
+.mess:first-child::after {
+	display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="forum">
+	<div class="mess s1">are there any girls amongs us&nbsp;&nbsp;<strong>[Annyhilator]</strong></div>
+	<div class="mess s2">haha!&nbsp;&nbsp;<strong>[Mon$ster]</strong></div>
+	<div class="mess s3">l000000l!!!!&nbsp;&nbsp;<strong>[ZUZA]</strong></div>
+	<div class="mess s2">yeah, so I'm a girm, does that change anything?&nbsp;&nbsp;<strong>[SoulSHacker]</strong></div>
+	<div class="mess s1">are there any girls amongs us&nbsp;&nbsp;<strong>[Annyhilator]</strong></div>
+</div>
+
+</body>
+</html>

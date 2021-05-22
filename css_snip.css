@@ -1,0 +1,87 @@
+/*
+# Вставка ютуб видео
+http://img.youtube.com/vi//0.jpg
+https://codepen.io/mike-zarandona/full/FELxi/ (PrettyEmbed.js)
+*/
+
+/* Адаптивность вставляемых видео
+<div class="videoWrapper"></div>
+<video src="video.mp4" width="640" height="480" poster="image.jpg" autoplay controls loop preload></video> */
+.videoWrapper{
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+}
+.videoWrapper iframe,.videoWrapper object, .videoWrapper embed{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+/* CSS переменная */
+:root {
+	--red2: #ff0000;
+}
+
+* {
+	background: var(--red2, red);
+}
+
+/* Включение свойств в случае их поддержки браузером */
+@supports (display: grid) {
+	.blok {
+		display: grid;
+	}
+}
+
+
+/* Выравнивание по центру */
+* {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+
+/* Текстовый блок */
+.text {
+	color: #454545;
+	font-size: 1em;
+	line-height: 23px;
+}
+.text p {
+	margin: 1em 0;
+}
+
+
+/* Reset */
+h1, h2, h3, h4, ul, ol, textarea, pre, p, blockquote {
+	margin: 0;
+}
+ul, ol, textarea, td, th, input { 
+	padding: 0;
+}
+body {
+	font-size: 100%;
+}
+pre {
+	white-space: pre-wrap;
+}
+input[type="submit"], input[type="reset"] {
+	cursor: pointer;
+}
+h1,h2, h3, h4 {
+	font-weight: normal;
+	font-size: 100%;
+}
+li {
+	list-style: none;
+	display: list-item;
+}
+table {
+	border-collapse: collapse;
+}

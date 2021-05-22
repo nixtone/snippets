@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style>
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.overlay .popup {
+    background: #fff;
+    padding: 15px;
+    position: relative;
+}
+.overlay .popup .close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.overlay .popup .close::before, .overlay .popup .close::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.overlay .popup .close::before {
+    transform: rotate(45deg);
+}
+.overlay .popup .close::after {
+    transform: rotate(-45deg);
+}
+</style>
+</head>
+<body>
+
+<a href="" class="call">Попап</a>
+
+<div class="overlay" style="display: none;">
+    <div class="popup">
+        <div class="close"></div>
+        <div class="inner">
+            <form method="post">
+                <input type="text" name="NAME" id="" placeholder="Ваше имя">
+                <input type="text" name="PHONE" id="" placeholder="Телефон">
+                <input type="text" name="EMAIL" id="" placeholder="E-mail">
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+    </div>
+</div>
+<script src="lib/jquery-3.5.1.min.js"></script>
+<script src="lib/jquery.maskedinput.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Попап
+    $(".call").click(function(event) {
+        event.preventDefault();
+        $(".overlay").fadeIn(150);
+    });
+    $(".overlay .popup .close").click(function(event) {
+        $(".overlay").fadeOut(150);
+    });
+    $(".overlay").click(function(event) {
+        if(!$(".popup").is(event.target) && $(".popup").has(event.target).length === 0) {
+            $(".overlay").fadeOut(150);
+        }
+    });
+    // Маска телефона
+    $("input[name='PHONE']").mask("+7(999) 999-99-99");
+    // Проверка формата E-mail
+    var charmap = {};
+    var rus = "йцукенгшщзхъфывапролджэячсмитьбю".split('');
+    var eng = "qwertyuiop[]asdfghjkl;'zxcvbnm,.".split('');
+    for (var i = 0; i < rus.length; i++) {
+        charmap[rus[i]] = eng[i];
+    }
+    function rustoeng(string) {
+        return string.replace(/([^a-z\s])/gi,
+        function (x) {
+            return charmap[x] || x;
+        });
+    }
+    $("input[name='EMAIL']").blur(function(event) {
+        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+        if(pattern.test($(this).val()) || $(this).val() == '') {
+            $(this).closest("form").find("input[type='submit']").attr('disabled', false);
+        }
+        else {
+            alert("Неверный формат E-mail");
+            $(this).closest("form").find("input[type='submit']").attr('disabled', true);
+        }
+    }).on('input keydown paste', function (e) {
+        $this = $(this);
+        setTimeout(function () {
+            var newval = rustoeng($this.val());
+            if ($this.val() != newval) {
+                var caret = $this.caret();
+                $this.val(newval);
+                $this.caret(caret);
+            }
+        }, 0);
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<style>
+.outer1 {
+    width: 200px;
+    height: 200px;
+    
+    text-align: center;
+    background-color: #ffc;
+}
+.outer1:after {
+    display: inline-block;
+    height: 100%;
+
+    vertical-align: middle;
+    content: "";
+}
+.inner1 {
+    display: inline-block;
+    width: 100px;
+
+    vertical-align: middle;
+    background-color: #fcc;
+}
+
+/* -------------------------- */
+
+.outer {
+  background-color: #ffc;
+  margin-top: 10px;
+  position: relative;
+  width: 200px;
+}
+.inner {
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fcc;
+}
+</style>
+<div class="outer1">
+    <div class="inner1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+</div>
+
+<div class="outer">
+    <div class="inner">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum at consectetur nam rerum asperiores nemo fuga possimus explicabo similique soluta laborum tempore illo dicta deserunt eligendi obcaecati reiciendis laudantium.
+</div>

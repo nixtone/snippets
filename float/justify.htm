@@ -1,0 +1,44 @@
+<style>
+ul {
+  text-align: justify;
+  line-height: 0;
+ 
+  /* Opera Presto */
+  font-size: 1px;
+ 
+  /* IE6-7 */
+  text-justify: newspaper; 
+  zoom: 1;
+  text-align-last: justify;
+}
+ul:after {
+  width: 100%;
+  height: 0px;
+  visibility: hidden;
+  overflow: hidden;
+  content: "";
+  display: inline-block;
+}
+ul li  {
+  display: inline-block;
+  text-align: left;
+  background: #ccc;
+ 
+  /* Восстанавливаем обнулённые свойства */
+  line-height: normal;
+  font-size: 14px;
+ 
+  /* Opera Presto */
+  vertical-align: top;
+ 
+  /* IE6-7 */
+  //display : inline;
+  //zoom : 1;
+}
+</style>
+<ul>
+  <li>Пункт 1</li>
+  <li>Пункт 2</li>
+  <li>Пункт 3</li>
+  <li>Пункт 4</li>
+</ul>

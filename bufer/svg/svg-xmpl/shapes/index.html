@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+.scheme {
+	height: 393px;
+	width: 738px;
+	margin: 0 auto;
+	position: relative;
+}
+.scheme svg {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 393px;
+	width: 738px;
+}
+.scheme polygon {
+	fill: #FFDBA4;
+	cursor: pointer;
+}
+
+.scheme-item {
+	position: absolute;
+	cursor: pointer;
+}
+.scheme-name {
+	font-weight: bold;
+	font-size: 10px;
+	text-align: center;
+	line-height: 13px;
+}
+.scheme-popup {
+	display: none;
+	border: 1px solid #777;
+	padding: 10px;
+	width: 200px;
+	position: absolute;
+	font-size: 12px;
+	line-height: 14px;
+	background: #fff;
+	z-index: 9999;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	text-align: left;
+}
+
+.scheme polygon:hover, #hover {
+	fill: #ffc70b;
+}
+.scheme polygon.active {
+	fill: #FF8C0B !important;
+}
+</style>
+<script src="jquery-3.4.1.min"></script>
+<script>
+$(document).ready(function() {
+	$('.scheme-item').hover(
+		function(){
+			$('.scheme polygon[data-id=' + $(this).data('id') + ']').attr('id', 'hover');
+		},
+		function(){
+			$('.scheme polygon[data-id=' + $(this).data('id') + ']').attr('id', '');
+		}
+	);	
+	 
+	// Клик по названию магазина - открывается подсказка.
+	$('.scheme-item').on('click', function(){
+		$('.scheme-popup').hide();
+		$('.scheme polygon').attr('class', '');
+	 
+		var popup = $(this).find('.scheme-popup');
+		$(popup).css('top', '-' + ($(popup).outerHeight(true) + 15) + 'px');
+		$(popup).css('left', '-' + (($(popup).outerWidth(true) / 2) - ($(this).outerWidth(true) / 2)) + 'px');
+		$('.scheme polygon[data-id=' + $(this).data('id') + ']').attr('class', 'active');
+		$(popup).show();
+	});
+	 
+	// Клик по полигону магазина - также открывается подсказка.
+	$('.scheme polygon').click(function(){
+		$('.scheme-popup').hide();
+		$('.scheme-item[data-id=' + $(this).data('id') + ']').trigger('click');
+	});
+	 
+	// Клик вне магазинов все закрывает.
+	$("body").click(function(e) {
+		if ($(e.target).closest(".scheme polygon, .scheme-item").length == 0) {
+			$(".scheme-popup").hide();
+			$('.scheme polygon').attr('class', '');
+		}
+	});	
+});
+</script>
+</head>
+<body>
+
+<div class="scheme">
+	<img src="scheme.png" alt="">
+	<svg>
+		<polygon data-id="1" points="52,270 93,305 151,305 151,364 137,364 52,342 17,311"></polygon>
+		<polygon data-id="2" points="92,224 123,252 123,302 93,302 53,268"></polygon>
+		<polygon data-id="3" points="137,169 168,197 124,249 93,223"></polygon>
+	</svg>
+
+	<div class="scheme-item" data-id="1" style="top: 319px; left: 71px;">
+		<div class="scheme-name">Детский Мир</div>
+		<div class="scheme-popup">
+			Сеть магазинов «Детский мир» - крупнейший розничный оператор торговли 
+			детскими товарами и лидер рынка.
+		</div>
+	</div>
+ 
+	<div class="scheme-item" data-id="2" style="top: 255px; left: 84px;">
+		<div class="scheme-name">Триал<br>Спорт</div>
+		<div class="scheme-popup">
+			Сеть специализированных спортивных магазинов 
+			«Триал-Спорт». Снаряжение, одежда и аксессуары для активного отдыха и спорта!
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

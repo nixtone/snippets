@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cake Vue.js</title>
+<script src="vue.min.js"></script>
+<style>
+.layer {
+	padding: 5px;
+	color: #fff;
+	box-sizing: border-box;
+}
+.layer.layer-biscuit {
+	background-color: #454545;
+}
+.layer.layer-beze {
+	background-color: #4396dd;
+}
+.layer.layer-curd {
+	background-color: #dd8443;
+}
+.cake-wrap {
+	margin-top: 20px;
+	width: 500px;
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	grid-gap: 20px;
+}
+.table {
+	border: 1px solid #454545;
+}
+</style>
+</head>
+<body>
+
+<div class="sample">
+	<button class="btn btn-primary" @click="addLayer">add layer</button>
+	<div class="cake-wrap">
+		<div class="cake">
+			<div class="layer" :class="'layer-' + layer.type" :style="{height: layer.height * 10 + 'px'}" v-for="(layer, i) in layers" @click="changeHeight(i, 1)" @contextmenu.prevent="changeHeight(i, -1)">{{ layer.type }}</div>
+		</div>
+		<table class="table table-bordered" v-show="hasLayers">
+			<tr>
+				<th>Type</th>
+				<th>Height</th>
+				<th>Actions</th>
+			</tr>
+			<tr v-for="(layer, i) in layers">
+				<td>
+					<select class="form-control" v-model="layers[i].type">
+						<option :value="key" v-for="(lt, key) in layersTypes">{{ lt.label }}</option>
+					</select>
+				</td>
+				<td><input type="text" class="form-control" v-model.number="layers[i].height"></td>
+				<td><button type="button" class="btn btn-danger" @click="deleteLayer(i)">-</button></td>
+			</tr>
+		</table>
+	</div>
+	<div class="price" v-show="hasLayers">{{ price }}</div>
+</div>
+
+<script src="cake.js"></script>
+</body>
+</html>

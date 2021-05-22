@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="table_wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Заголовок 1</th>
+                        <th>Наименование</th>
+                        <th>Данные</th>
+                        <th>Характеристики</th>
+                        <th>Большой большой заголовок</th>
+                        <th>Дата</th>
+                        <th>Цена</th>
+                        <th>Преимущества</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Заголовок 1"><span>Компьютер</span></td>
+                        <td data-label="Наименование"><span>Мощный компьютер</span></td>
+                        <td data-label="Данные"><span>Супер данные</span></td>
+                        <td data-label="Характеристики">
+                            <ul>
+                                <li>Очень хорошая характеристика 1</li>
+                                <li>Очень хорошая характеристика 2</li>
+                                <li>Очень хорошая характеристика 3</li>
+                            </ul>
+                        </td>
+                        <td data-label="Большой большой заголовок"><span>Большое большое описание</span></td>
+                        <td data-label="Дата"><span>09.02.2017</span></td>
+                        <td data-label="Цена"><span>100 000 руб.</span></td>
+                        <td data-label="Преимущества"><span>Мы лучше всех</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Заголовок 1"><span>Компьютер</span></td>
+                        <td data-label="Наименование"><span>Мощный компьютер</span></td>
+                        <td data-label="Данные"><span>Супер данные</span></td>
+                        <td data-label="Характеристики">
+                            <ul>
+                                <li>Очень хорошая характеристика 1</li>
+                                <li>Очень хорошая характеристика 2</li>
+                                <li>Очень хорошая характеристика 3</li>
+                            </ul>
+                        </td>
+                        <td data-label="Большой большой заголовок"><span>Большое большое описание</span></td>
+                        <td data-label="Дата"><span>09.02.2017</span></td>
+                        <td data-label="Цена"><span>100 000 руб.</span></td>
+                        <td data-label="Преимущества"><span>Мы лучше всех</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Заголовок 1"><span>Компьютер</span></td>
+                        <td data-label="Наименование"><span>Мощный компьютер</span></td>
+                        <td data-label="Данные"><span>Супер данные</span></td>
+                        <td data-label="Характеристики">
+                            <ul>
+                                <li>Очень хорошая характеристика 1</li>
+                                <li>Очень хорошая характеристика 2</li>
+                                <li>Очень хорошая характеристика 3</li>
+                            </ul>
+                        </td>
+                        <td data-label="Большой большой заголовок"><span>Большое большое описание</span></td>
+                        <td data-label="Дата"><span>09.02.2017</span></td>
+                        <td data-label="Цена"><span>100 000 руб.</span></td>
+                        <td data-label="Преимущества"><span>Мы лучше всех</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>
+    .wrapper {
+        width: 95%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .table {
+    	width: 100%;
+    	border-collapse: collapse;
+    }
+    .table td,
+    .table th {
+    	padding: 5px;
+    	border:  1px solid black;
+    }
+    .table td {
+    	position: relative;
+    }
+    @media screen and (max-width: 1050px) {
+    	thead {
+    		display: none;
+    	}
+    	.table td {
+    		display: block;
+    		padding-left: 40%;
+    		border:  none;
+
+    	}
+    	.table td:nth-child(odd) {
+    		background-color: #ccc;
+    	}
+    	.table td:before {
+    		content: attr(data-label);
+    		position: absolute;
+    		left: 2%;
+    	}
+    	.table tr {
+    		border-bottom: 5px solid black;
+    	}
+    }
+    @media screen and (max-width: 600px) {
+    	.table td:before {
+    		position: static;
+    		display: block;
+    		background-color: #ccc;
+    		font-weight: bold;
+    		padding: 10px;
+    	}
+
+    	.table td {
+    		padding: 10px;
+    		text-align: center;
+
+    	}
+    	.table td:nth-child(odd) {
+    		background-color: #fff;
+    	}
+    }
+    </style>
+</body>
+
+</html>

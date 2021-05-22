@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Round menu</title>
+<style>
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+.circular-menu {
+	position: relative;
+	width: 300px;
+	height: 300px;
+}
+.circular-menu__item {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	text-decoration: none;
+	color: #f6f6e9;
+	background-color: #13334c;
+	transition: 0.3s;
+	outline: none;
+}
+.circular-menu__button {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: #13334c;
+	outline: none;
+}
+.circular-menu__lines,
+.circular-menu__lines::before,
+.circular-menu__lines::after {
+	position: absolute;
+	width: 40px;
+	height: 6px;
+	background-color: #f6f6e9;
+	transition: 0.3s;
+}
+.circular-menu__lines {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: transparent;
+}
+.circular-menu__lines::before {
+	content: '';
+}
+.circular-menu__lines::after {
+	content: '';
+	transform: rotate(90deg);
+}
+.circular-menu__button_active .circular-menu__lines::before {
+	transform: rotate(45deg);
+}
+.circular-menu__button_active .circular-menu__lines::after {
+	transform: rotate(-45deg);
+}
+</style>
+</head>
+<body>
+<div class="circular-menu">
+	<a href="#" class="circular-menu__item">HTML</a>
+	<a href="#" class="circular-menu__item">CSS</a>
+	<a href="#" class="circular-menu__item">JS</a>
+	<a href="#" class="circular-menu__item">PHP</a>
+	<a href="#" class="circular-menu__item">MySQL</a>
+	<a href="#" class="circular-menu__item">Python</a>
+	<a href="#" class="circular-menu__item">Ruby</a>
+	<a href="#" class="circular-menu__button"><span class="circular-menu__lines"></span></a>
+</div>
+<script>
+let menus = [...document.querySelectorAll('.circular-menu')];
+menus.map((menu) => {
+	let items = menu.querySelectorAll('.circular-menu__item');
+	let button = menu.querySelector('.circular-menu__button');
+	let active = false;
+	const length = items.length;
+	const arc = 2 * Math.PI * (1 / length);
+	const radius = 40;
+	button.addEventListener('click', (e) => {
+		e.preventDefault();
+		active = !active;
+		if(active) {
+			button.classList.add('circular-menu__button_active');
+			for(let i = 0; i < length; i++) {
+				const angle = i * arc;
+				const x = radius * Math.cos(angle);
+				const y = radius * Math.sin(angle);
+				items[i].style.left = 50 + x + '%';
+				items[i].style.top = 50 + y + '%';
+			}
+		}
+		else {
+			button.classList.remove('circular-menu__button_active');
+			for(let i = 0; i < length; i++) {
+				items[i].removeAttribute('style');
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
