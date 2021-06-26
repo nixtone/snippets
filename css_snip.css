@@ -46,6 +46,11 @@ https://codepen.io/mike-zarandona/full/FELxi/ (PrettyEmbed.js)
 	transform: translate(-50%, 0);
 }
 
+/* Блочная картинка */
+.bimg, .bimg img {
+	display: block;
+	width: 100%;
+}
 
 /* Текстовый блок */
 .text {

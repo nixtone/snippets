@@ -70,9 +70,8 @@ $(document).ready(function() {
     // Попап
     $(".cpp").click(function(event) {
         event.preventDefault();
-        var ppName = $(this).data('pp');
         $(".overlay .inner > *").hide();
-        $(".overlay, .overlay ."+ppName).fadeIn(150);
+        $(".overlay, .overlay ."+$(this).data('pp')).fadeIn(150);
     });
     $(".overlay").click(function(event) {
         if(!$(".popup").is(event.target) && $(".popup").has(event.target).length === 0 || event.target.className == "close") $(".overlay").fadeOut(150);
