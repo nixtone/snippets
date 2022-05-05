@@ -1,4 +1,4 @@
-<div class="tab-area">
+<div id="tab1" class="tab-area"><!-- data-name="" -->
 	<div class="tab-label">
 		<div class="tab-item active" data-c="1">Первый</div>
 		<div class="tab-item" data-c="2">Второй</div>
@@ -27,8 +27,44 @@
 <script>
 $(document).ready(function() {
 
+	/*
 	// Табы
+	if(localStorage.getItem('tab_'+$(this).closest('.tab-area').data('name')) == null) {
+		localStorage.setItem('tab_'+$(this).closest('.tab-area').data('name'), $(this).data('c'));
+		// переключить на запомненный таб
+	}
+
+		console.log(localStorage.getItem('tab_'+$(this).closest('.tab-area').data('name')));
+
+		if(localStorage.getItem('tab_'+$(this).closest('.tab-area').data('name')) == null) {
+			
+			console.log($(this).data('c'));
+			localStorage.setItem('tab_'+$(this).closest('.tab-area').data('name'), $(this).data('c'));
+		}
+	*/
+
+	function tabSwitcher(tabID, tabCount) {
+		$(tabID).find('.tab-item'+tabCount).addClass('active').siblings().removeClass('active');
+		// $(this).closest('.tab-area').find('.tab-page > .tab-item.c' + $(this).data('c')).addClass('active').siblings().removeClass('active');
+	}
+
+	// Поиск сохраненных табов
+	$(".tab-area").each(function(index, el) {
+		if(localStorage.getItem('tab_' + $(this).attr('id')) != null) {
+			// если такие есть, то переключить
+
+		}
+		
+	});
+	
 	$(".tab-area > .tab-label > .tab-item").click(function(event) {
+
+
+		// Запомнить выбранный таб
+		// console.log('tab_'+$(this).closest('.tab-area').data('name'));
+		localStorage.setItem('tab_' + $(this).closest('.tab-area').attr('id'), $(this).data('c'));
+
+
 		$(this).addClass('active').siblings().removeClass('active');
 		$(this).closest('.tab-area').find('.tab-page > .tab-item.c' + $(this).data('c')).addClass('active').siblings().removeClass('active');
 	});
