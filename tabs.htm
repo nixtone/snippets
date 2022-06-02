@@ -1,12 +1,12 @@
-<div id="tab1" class="tab-area"><!-- data-name="" -->
+<div class="tab-area" data-name="resume">
 	<div class="tab-label">
-		<div class="tab-item active" data-c="1">Первый</div>
-		<div class="tab-item" data-c="2">Второй</div>
-		<div class="tab-item" data-c="3">Третий</div>
-		<div class="tab-item" data-c="4">Четвертый</div>
+		<div class="tab-item c1">Первый</div>
+		<div class="tab-item c2">Второй</div>
+		<div class="tab-item c3">Третий</div>
+		<div class="tab-item c4">Четвертый</div>
 	</div>
 	<div class="tab-page">
-		<div class="tab-item c1 active">Заголовок 1</div>
+		<div class="tab-item c1">Заголовок 1</div>
 		<div class="tab-item c2">Заголовок 2</div>
 		<div class="tab-item c3">Заголовок 3</div>
 		<div class="tab-item c4">Заголовок 4</div>
@@ -21,52 +21,39 @@
 	display: block;
 	color: blue; /* удалить */
 }
+/* Побочное, для вида */
+.tab-area .tab-label {
+	display: flex;
+	margin-bottom: 10px;
+}
+.tab-area .tab-label .tab-item {
+	padding: 5px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	margin-right: 5px;
+}
 </style>
 
-<script src="lib/jquery-3.5.1.min.js"></script>
+<script src="jquery-3.5.1.min.js"></script>
 <script>
 $(document).ready(function() {
 
-	/*
-	// Табы
-	if(localStorage.getItem('tab_'+$(this).closest('.tab-area').data('name')) == null) {
-		localStorage.setItem('tab_'+$(this).closest('.tab-area').data('name'), $(this).data('c'));
-		// переключить на запомненный таб
-	}
-
-		console.log(localStorage.getItem('tab_'+$(this).closest('.tab-area').data('name')));
-
-		if(localStorage.getItem('tab_'+$(this).closest('.tab-area').data('name')) == null) {
-			
-			console.log($(this).data('c'));
-			localStorage.setItem('tab_'+$(this).closest('.tab-area').data('name'), $(this).data('c'));
-		}
-	*/
-
-	function tabSwitcher(tabID, tabCount) {
-		$(tabID).find('.tab-item'+tabCount).addClass('active').siblings().removeClass('active');
-		// $(this).closest('.tab-area').find('.tab-page > .tab-item.c' + $(this).data('c')).addClass('active').siblings().removeClass('active');
-	}
-
-	// Поиск сохраненных табов
+	let tabAreaName = 'tabCount_';
 	$(".tab-area").each(function(index, el) {
-		if(localStorage.getItem('tab_' + $(this).attr('id')) != null) {
-			// если такие есть, то переключить
-
+		let savedTabCount = localStorage.getItem(tabAreaName+$(this).data('name'));
+		if(savedTabCount != null) {
+			$(".tab-area .tab-item").removeClass('active');
+			$(".tab-area .tab-item.c"+savedTabCount).addClass('active');
 		}
-		
+		else {
+			$(".tab-area .tab-item.c1").addClass('active');
+		}
 	});
-	
-	$(".tab-area > .tab-label > .tab-item").click(function(event) {
-
-
-		// Запомнить выбранный таб
-		// console.log('tab_'+$(this).closest('.tab-area').data('name'));
-		localStorage.setItem('tab_' + $(this).closest('.tab-area').attr('id'), $(this).data('c'));
-
-
+	$(".tab-label .tab-item").click(function(event) {
+		let tabCount = $(this).index()+1;
+		localStorage.setItem(tabAreaName+$(this).closest('.tab-area').data('name'), tabCount);
 		$(this).addClass('active').siblings().removeClass('active');
-		$(this).closest('.tab-area').find('.tab-page > .tab-item.c' + $(this).data('c')).addClass('active').siblings().removeClass('active');
+		$(this).closest('.tab-area').find('.tab-page .tab-item.c'+tabCount).addClass('active').siblings().removeClass('active');
 	});
 
 });
