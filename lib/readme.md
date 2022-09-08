@@ -40,6 +40,11 @@ $("input[name='PHONE']").mask("+7 (999) 999-9999").on('click', function (e) {
 $('.slick-slider').slick({
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: true,
+    arrows: true,
+    dots: true,
+    fade: true,
+    pauseOnHover: true,
 	responsive: [
 		{
 			breakpoint: 970,

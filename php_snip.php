@@ -10,6 +10,17 @@ $date1 = new DateTime(); // Сейчас
 $dayDiff = $date2->diff($date1)->format('%s'); // %a - разница дней, %ы - разница в секундах. %d.%m.%Y %H:%i:%s
 echo $dayDiff;
 
+# Делает из "8 (987) 906-00-86" в "+79879060086"
+function phoneDigitPlus7($sourcePhone) {
+	preg_match_all("/\d+/", $sourcePhone, $m);
+	$phoneDigit = implode('', $m[0]);
+	switch (substr($phoneDigit, 0, 1)) {
+		case 7: $phoneDigit = str_pad($phoneDigit, 12, "+", STR_PAD_LEFT); break;
+		case 8: $phoneDigit = substr_replace($phoneDigit, "+7", 0, 1); break;
+	}
+	return $phoneDigit;
+}
+
 # Достать только цифры из строки
 preg_match("/\d+/", $price, $m);
 preg_replace("/[^0-9]/", '', $CURRENT['SITE']['phone1'])
