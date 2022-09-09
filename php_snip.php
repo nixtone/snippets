@@ -10,6 +10,11 @@ $date1 = new DateTime(); // Сейчас
 $dayDiff = $date2->diff($date1)->format('%s'); // %a - разница дней, %ы - разница в секундах. %d.%m.%Y %H:%i:%s
 echo $dayDiff;
 
+// Разница дат в секкундах dateDiff("2022-09-10 00:36:00")
+function dateDiff($oldDate) {
+	return abs(strtotime(date("Y-m-d H:i:s")) - strtotime($oldDate));
+}
+
 # Делает из "8 (987) 906-00-86" в "+79879060086"
 function phoneDigitPlus7($sourcePhone) {
 	preg_match_all("/\d+/", $sourcePhone, $m);
